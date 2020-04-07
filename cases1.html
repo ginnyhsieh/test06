@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" integrity="sha384-v8BU367qNbs/aIZIxuivaU55N5GPF89WBerHoGA4QTcbUjYiLQtKdrfXnqAcXyTv" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+    <title>中華民國徵信商業同業公會</title>
+</head>
+<body>
+    <section class="other-page-navbar">
+        <nav class="navbar navbar-expand-xl fixed-top navbar-bg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">中華民國徵信商業同業公會</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"><i class="fas fa-bars fa-lg"></i></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="index.html">首頁 <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="index.html#link1">簡介</a>
+                        <a class="nav-item nav-link" href="index.html#link2">徵信師考試公告</a>
+                        <a class="nav-item nav-link" href="index.html#link3">徵信社服務項目</a>
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle " href="index.html#link4" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">徵信文章</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="news.html">徵信新聞</a>
+                                <a class="dropdown-item" href="cases.html">徵信案例</a>
+                                <a class="dropdown-item" href="columns.html">徵信專欄</a>
+                            </div>
+                        </div>
+                        <a class="nav-item nav-link" href="index.html#link5">委託須知</a>
+                        <a class="nav-item nav-link" href="index.html#link6">公會成員</a>
+                        <a class="nav-item nav-link" href="index.html#link7">聯絡我們</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <section id="article" class="article-side-page">
+        <div class="container">
+            <!-- 用v-if來選擇要顯示第幾篇新聞 -->
+            <div v-for="item in cases" v-if="item.number == 1">
+                <h4>{{item.title}}</h4>
+                <div class="article-side-page-block">
+                    <p v-for="text in item.content">{{text}}</p>
+                </div>
+                <div>
+                    <button class="article-side-page-back" onclick="window.history.go(-1)">回上一頁</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

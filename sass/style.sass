@@ -1,0 +1,651 @@
+//----------Global----------//
+
+$color-black01: #000000
+$color-black02: #9a9a9a
+$color-black03: #dddddd
+$color-black04: #eaeaea
+$color-black05: #fafafa
+$color-black06: #ffffff
+$color-blue01: #2B5F75
+$color-blue02: #cae7e8
+$color-blue03: #EBEFF1
+$color-yellow01: #EFBB24
+$color-yellow02: #FAD689
+
+@mixin flex ($align,$justify,$wrap)
+    display: flex
+    align-content: $align
+    justify-content: $justify
+    flex-wrap: $wrap
+
+@mixin extra-lg-width ()
+    @media (max-width:1200px)
+        @content
+
+@mixin lg-width ()
+    @media (max-width:992px)
+        @content
+
+@mixin md-width ()
+    @media (max-width:768px)
+        @content
+
+@mixin sm-width ()
+    @media (max-width:576px)
+        @content
+
+@mixin extra-sm-width ()
+    @media (max-width:400px)
+        @content
+
+head,body
+    margin: 0
+    padding: 0
+    color: $color-black01
+    font-family: 'Noto Serif TC', serif
+    background-color: $color-black05
+    overflow-x: hidden
+
+h4
+    font-weight: 600
+
+@include md-width ()
+    p
+        font-size: 20px
+
+// 解決錨點錯位的問題
+.anchor
+    display: block
+    height: 65px
+    margin-top: -65px
+    visibility: hidden
+
+
+//----------Navbar----------//
+
+header
+    nav
+        height: 65px
+        transition: 0.5s
+        .navbar-brand
+            font-weight: bold
+            font-size: 28px
+            transition: 0.5s
+        .navbar-brand:hover
+            color: $color-yellow01
+        .navbar-toggler
+            background-color: $color-black03
+            .navbar-toggler-icon
+                padding-top: 4px
+                color: $color-blue01
+        .collapse
+            .navbar-nav
+                .nav-link
+                    transition: 0.5s
+                .nav-link:hover
+                    color: $color-yellow01
+                .dropdown:hover .dropdown-menu
+                    display: block
+                    margin-top: 0 // remove the gap so it doesn't close
+    @include extra-lg-width ()
+        nav
+            transition: none
+            .navbar-brand
+                transition: none
+            .collapse
+                transition: none
+                .navbar-nav
+                    padding: 16px
+                    background-color: $color-black04
+                    transition: none
+                    .nav-link
+                        color: $color-blue01
+                        transition: none
+    @include sm-width ()
+        nav
+            .collapse
+                .navbar-nav
+                    width: 100%
+            .navbar-brand
+                font-size: 24px
+    @include extra-sm-width ()
+        nav
+            .navbar-brand
+                font-size: 18px
+        
+    .navbar-transparent
+        background-color: transparent
+    .navbar-bg
+        background-color: $color-black05
+        box-shadow: 0px 3px 8px #666666
+    .navbar-origin-color
+        color: $color-black06
+    .navbar-movedown-color
+        color: $color-blue01
+
+//----------Banner----------//
+
+.banner
+    width: 100%
+    height: 90vh
+    padding-top: 8vh
+    padding-bottom: 8vh
+    background-image: url("../img/bg03.png")
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    position: relative
+    color: $color-black06
+    .container
+        .banner-content
+            +flex(center,center,wrap)
+            height: 60vh
+            h1
+                text-align: center
+                width: 100%
+                font-weight: 600
+                font-size: 48px
+                text-shadow: 5px 5px 10px $color-black01
+            a 
+                text-decoration: none
+                .banner-more
+                    +flex(none,none,wrap)
+                    border: 1px solid $color-blue02
+                    color: $color-blue01
+                    font-weight: 600
+                    width: fit-content
+                    padding: 4px 12px 4px 12px
+                    border-radius: 20px
+                    transition: 0.5s
+                    margin-top: 16px
+                .banner-more:hover
+                    background-color: $color-blue01
+                    color: $color-black06
+    .banner-bottom
+        width: 100%
+        padding-top: 160px
+        position: absolute
+        bottom: -5px
+        background-image: url("../img/banner-bottom03.png")
+        background-size: 100%
+        background-repeat: no-repeat
+
+@include sm-width ()
+    .banner
+        height: 75vh
+        .banner-bottom
+            display: none
+
+//----------Intro----------//
+
+.intro 
+    width: 100%
+    padding-bottom: 8vh
+    .intro-item
+        margin-bottom: 36px
+        h4
+            border-left: 16px solid $color-blue02
+            padding-left: 8px
+
+@include sm-width ()
+    .intro
+        padding-top: 8vh
+        .intro-item
+            width: 90%
+            margin: 0 auto
+            margin-bottom: 48px
+        .intro-item:last-child
+            margin-bottom: 0
+         
+//----------Exam----------//
+
+.exam
+    width: 100%
+    height: 400px
+    padding-top: 8vh
+    padding-bottom: 8vh
+    background-color: $color-blue01
+    color: $color-black06
+    text-align: center
+
+//----------Service----------//
+
+.service
+    width: 100%
+    padding-top: 8vh
+    padding-bottom: 8vh
+    text-align: center
+    background-color: $color-black05
+    h4
+        padding-bottom: 4vh
+    .service-item-set
+        +flex(none,center,wrap)
+        .service-item
+            width: calc((100% - 80px) / 4)
+            margin: 10px
+            padding: 12px
+            position: relative
+            transition: 0.5s
+            border: 1px solid $color-black03
+            background-color: $color-black06
+            h4
+                padding: 24px
+                background-position: center
+                background-repeat: no-repeat
+                background-size: cover
+                color: $color-black06
+                font-weight: 600
+                position: relative
+                z-index: 1
+            h4:before
+                content: ''
+                position: absolute
+                top: 0
+                left: 0
+                width: 100%
+                height: 100%
+                background-color: rgba(43,95,117,0.4)
+                z-index: -1
+            .service-bg01
+                background-image: url("../img/service_bg01.jpg")
+            .service-bg02
+                background-image: url("../img/service_bg02.jpg")
+            .service-bg03
+                background-image: url("../img/service_bg03.jpg")
+            .service-bg04
+                background-image: url("../img/service_bg04.jpg")
+            .service-bg05
+                background-image: url("../img/service_bg05.jpg")
+            .service-bg06
+                background-image: url("../img/service_bg06.jpg")
+            .service-bg07
+                background-image: url("../img/service_bg07.jpg")
+            .service-bg08
+                background-image: url("../img/service_bg08.jpg")
+            .service-bg09
+                background-image: url("../img/service_bg09.jpg")
+            .service-bg10
+                background-image: url("../img/service_bg10.jpg")
+            .service-bg11
+                background-image: url("../img/service_bg11.jpg")
+            .service-bg12
+                background-image: url("../img/service_bg12.jpg")
+            .service-content
+                text-align: left
+                .service-text
+                    width: 100%
+                    height: 76px
+                    overflow: hidden
+                .service-more
+                    // font-size: small
+                    border: 1px solid $color-blue01
+                    color: $color-blue01
+                    font-weight: 600
+                    width: fit-content
+                    padding: 4px 12px 4px 12px
+                    border-radius: 20px
+                    transition: 0.5s
+                    margin-top: 8px
+                .service-more:hover
+                    background-color: $color-blue01
+                    color: $color-black06
+        .service-item:hover
+            background-color: $color-blue02
+
+        @include lg-width ()
+            .service-item
+                width: calc((100% - 60px) / 3)
+        @include md-width ()
+            .service-item
+                width: calc((100% - 40px) / 2)
+                .service-content
+                    .service-text
+                        width: 100%
+                        height: 92px
+        @include sm-width ()
+            .service-item
+                width: calc(100% - 20px)
+                
+//----------Article----------//
+
+.article
+    width: 100%
+    padding-top: 8vh
+    padding-bottom: 8vh
+    background-color: $color-black04
+    text-align: center
+    .article-set
+        +flex(none,center,wrap)
+        .article-item
+            width: calc((100% - 60px) / 3)
+            height: fit-content
+            margin: 10px
+            h5
+                padding: 8px
+                border-bottom: 3px solid $color-blue01
+            .article-content
+                +flex(none,none,wrap)
+                text-align: left
+                margin-bottom: 6px
+                a
+                    +flex(none,none,wrap)
+                    text-decoration: none
+                    color: $color-black01
+                    .article-date
+                        width: 88px
+                        background-color: $color-blue02
+                        padding: 0 4px 0 4px
+                        margin-right: 4px
+                    .article-title1
+                        width: calc( 100% - (88px + 4px) )
+                        height: 24px
+                        overflow: hidden
+                        transition: 0.5s
+                    .article-title1:hover
+                        background-color: $color-blue01
+                        color: $color-black06
+                    .article-title2
+                        width: 100%
+                        height: 24px
+                        overflow: hidden
+                        transition: 0.5s
+                    .article-title2:hover
+                        background-color: $color-blue01
+                        color: $color-black06
+            a 
+                text-decoration: none
+                .article-more
+                    +flex(none,none,wrap)
+                    border: 1px solid $color-blue01
+                    color: $color-blue01
+                    font-weight: 600
+                    width: fit-content
+                    padding: 4px 12px 4px 12px
+                    border-radius: 20px
+                    transition: 0.5s
+                    margin-top: 16px
+                .article-more:hover
+                    background-color: $color-blue01
+                    color: $color-black06
+
+        @include md-width ()
+            .article-item
+                width: calc(100% - 20px)
+                padding: 16px
+                background-color: rgba(255,255,255,0.3)
+                border-radius: 10px
+                a
+                    +flex(none,center,wrap)            
+
+//----------Notice----------//
+
+.notice
+    width: 100%
+    padding-top: 8vh
+    padding-bottom: 8vh
+    text-align: center
+    .notice-set
+        +flex (center,none,wrap)
+        padding-top: 2vh
+        padding-bottom: 8vh
+        text-align: left
+        .notice-item
+            +flex (flex-start,none,wrap)
+            width: calc( (100% - 60px) / 3 )
+            margin: 10px
+            .notice-number
+                +flex (center,center,wrap)
+                width: 40px
+                height: 40px 
+                background-color: $color-blue01
+                border-radius: 50%
+                margin-right: 12px
+                p
+                    padding: 0
+                    margin: 0
+                    font-size: 18px
+                    font-weight: 600
+                    color: $color-black06
+            .notice-text
+                +flex (center,none,wrap)
+                width: calc( 100% - 52px )
+                p
+                    padding: 0
+                    margin: 0
+                    height: fit-content
+    .notice-set:last-child
+        padding-bottom: 0
+
+    @include md-width ()
+        .notice-set
+            .notice-item
+                width: calc( 100% - 20px )
+
+//----------Member----------//
+
+.member
+    width: 100%
+    padding-top: 8vh
+    padding-bottom: 8vh
+    text-align: center
+    background-color: $color-blue03
+    .member-set
+        +flex (none,flex-start,wrap)
+        padding-top: 4vh
+        .member-item
+            width: calc( (100% - 160px) / 8 )
+            margin: 10px
+            transition: 0.5s
+        .member-item:hover
+            transform: scale(1.2)
+            box-shadow: 3px 3px 8px $color-black02
+        @include lg-width ()
+            .member-item
+                width: calc( (100% - 100px) / 5 )
+        @include md-width ()
+            .member-item
+                width: calc( (100% - 80px) / 4 )
+        @include sm-width ()
+            .member-item
+                width: calc( (100% - 60px) / 3 )
+        @include extra-sm-width ()
+            .member-item
+                width: calc( (100% - 40px) / 2 )
+
+//----------Footer----------//
+
+footer 
+    background-color: $color-blue01
+    padding-top: 4vh
+    padding-bottom: 4vh
+    .container
+        a
+            text-decoration: none
+            h5 
+                transition: 0.5s
+                border-bottom: 2px solid $color-yellow02
+                margin-bottom: 16px
+                padding-bottom: 16px
+                color: $color-yellow02
+                font-weight: 600
+    p
+        font-size: 14px
+        color: $color-black06
+        margin: 0
+
+//----------Article Main Page----------//
+
+.article-main-page
+    width: 100%
+    padding-top: 16vh
+    padding-bottom: 8vh
+    text-align: center
+    .container
+        +flex (none,center,wrap)
+        h4
+            width: 100%
+            padding-bottom: 4vh
+        .article-main-page-block
+            width: 60%
+            padding: 24px
+            border: 1px solid $color-black03
+            border-radius: 10px
+            background-color: $color-black06
+            .article-main-page-list
+                +flex (none,flex-start,wrap)
+                width: fit-content
+                height: fit-content
+                margin-bottom: 4px
+                a
+                    +flex (none,none,wrap)
+                    text-decoration: none
+                    color: $color-black01
+                    .article-main-page-date
+                        width: 108px
+                        height: 24px
+                        background-color: $color-blue02
+                        margin-right: 8px
+                    .article-main-page-title1
+                        text-align: left
+                        width: calc( 100% - (108px + 8px) )
+                        transition: 0.3s
+                    .article-main-page-title1:hover
+                        background-color: $color-blue01
+                        color: $color-black06
+                    .article-main-page-title2
+                        text-align: left
+                        width: calc( 100% - 16px)
+                        transition: 0.3s
+                    .article-main-page-title2:hover
+                        background-color: $color-blue01
+                        color: $color-black06
+                    .article-dash
+                        width: 16px
+            .article-main-page-list:last-child
+                margin-bottom: 0
+        div
+            margin-bottom: 6vh
+            width: 100vw
+            .article-main-page-back
+                border: 1px solid $color-blue01
+                color: $color-blue01
+                font-weight: 600
+                width: fit-content
+                padding: 4px 12px 4px 12px
+                border-radius: 20px
+                transition: 0.5s
+            .article-main-page-back:hover
+                background-color: $color-blue01
+                color: $color-black06
+        
+        @include lg-width ()
+            .article-main-page-block
+                width: 80%
+        @include md-width ()
+            .article-main-page-block
+                width: 100%
+        @include sm-width ()
+            .article-main-page-block
+                width: 90%
+                .article-main-page-list
+                    a
+                        .article-main-page-title1
+                            width: 100%
+
+//----------Article Side Page----------//
+
+.article-side-page
+    width: 100%
+    height: 100vh
+    padding-top: 16vh
+    padding-bottom: 8vh
+    text-align: center
+    background-color: $color-black05
+    .container
+        div
+            +flex (none,center,wrap)
+            h4
+                width: 100%
+                padding-bottom: 4vh
+            .article-side-page-block
+                display: inline
+                width: 60%
+                padding: 24px
+                border: 1px solid $color-black03
+                border-radius: 10px
+                background-color: $color-black06
+                text-align: left
+            div
+                margin-bottom: 6vh
+                width: 100vw
+                .article-side-page-back
+                    border: 1px solid $color-blue01
+                    color: $color-blue01
+                    font-weight: 600
+                    width: fit-content
+                    padding: 4px 12px 4px 12px
+                    border-radius: 20px
+                    transition: 0.5s
+                .article-side-page-back:hover
+                    background-color: $color-blue01
+                    color: $color-black06
+
+            @include lg-width ()
+                .article-side-page-block
+                    width: 80%
+            @include md-width ()
+                .article-side-page-block
+                    width: 100%
+            @include sm-width ()
+                .article-side-page-block
+                    width: 90%
+
+//----------Other Page Navbar----------//
+    
+.other-page-navbar
+    nav
+        height: 65px
+        transition: 0.5s
+        .navbar-brand
+            font-weight: bold
+            font-size: 28px
+            transition: 0.5s
+            color: $color-blue01
+        .navbar-brand:hover
+            color: $color-yellow01
+        .navbar-toggler
+            background-color: $color-black03
+            .navbar-toggler-icon
+                padding-top: 4px
+                color: $color-blue01
+        .collapse
+            .navbar-nav
+                .nav-link
+                    transition: 0.5s
+                    color: $color-blue01
+                .nav-link:hover
+                    color: $color-yellow01
+                .dropdown:hover .dropdown-menu
+                    display: block
+                    margin-top: 0 // remove the gap so it doesn't close
+        @include extra-lg-width ()
+            .collapse
+                .navbar-nav
+                    float: right
+                    width: fit-content
+                    padding: 16px
+                    background-color: $color-black04
+                    .nav-link
+                        color: $color-blue01
+        @include sm-width ()
+            .collapse
+                .navbar-nav
+                    width: 100%
+            .navbar-brand
+                font-size: 24px
+        @include extra-sm-width ()
+            .navbar-brand
+                font-size: 18px
+    .navbar-bg
+        background-color: $color-black05
+        box-shadow: 0px 3px 8px #666666
